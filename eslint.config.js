@@ -1,9 +1,12 @@
+const { defineConfig } = require("eslint/config");
 const js = require("@eslint/js");
 const globals = require("globals");
 
-module.exports = [
-  js.configs.recommended,
+module.exports = defineConfig([
   {
+    files: ["src/**/*.js"],
+    plugins: { js },
+    extends: ["js/recommended"],
     languageOptions: {
       globals: globals.node,
     },
@@ -11,4 +14,4 @@ module.exports = [
       "no-console": "warn",
     },
   },
-];
+]);
