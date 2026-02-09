@@ -1,7 +1,7 @@
 {
   "name": "http-api-assignment-ii",
   "version": "1.0.0",
-  "description": "",
+  "description": "need smth to change so workflow triggers",
   "main": "./src/server.js",
   "scripts": {
     "start": "node .",
