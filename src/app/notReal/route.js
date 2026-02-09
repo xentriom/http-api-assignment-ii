@@ -9,7 +9,8 @@ const GET = (req, res) => {
 
 const HEAD = (req, res) => {
   respond(req, res, 404, { 
-    id: 'notFound'
+    id: 'notFound', 
+    message: 'The page you are looking for was not found.' 
   });
 }
 
