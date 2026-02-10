@@ -3,34 +3,13 @@ const userForm = document.querySelector('#userForm');
 
 const handleResponse = async (res) => {
   const content = document.querySelector('#content');
-
-  switch (res.status) {
-    case 200:
-      content.innerHTML = `<b>Success</b>`;
-      break;
-    case 201:
-      content.innerHTML = `<b>Created</b>`;
-      break;
-    case 204:
-      content.innerHTML = `<b>Updated (No Content)</b>`;
-      break;
-    case 400:
-      content.innerHTML = `<b>Bad Request</b>`;
-      break;
-    case 404:
-      content.innerHTML = `<b>Not Found</b>`;
-      break;
-    default:
-      content.innerHTML = `<b>Error code not implemented.</b>`;
-      break;
-  }
+  content.innerHTML = `${res.status} - ${res.statusText}`;
 
   const text = await res.text();
   if (text) {
     const data = JSON.parse(text);
 
     // Mandatory log
-     
     console.log(data);
 
     if (data.message) {

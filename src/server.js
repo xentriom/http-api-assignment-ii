@@ -1,7 +1,7 @@
 const { createServer } = require('http');
 const { existsSync } = require('fs');
 const { join } = require('path');
-const { parseBody } = require('./utils/parseBody');
+const { parseBody, respond } = require('./utils/index.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const baseDir = join(__dirname, 'app');
@@ -30,8 +30,10 @@ const onRequest = async (req, res) => {
 
   // Route doesn't exist? Return 404
   if (!existsSync(routePath)) {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ id: 'notFound', message: 'The page you are looking for was not found.' }));
+    respond(req, res, 404, { 
+      id: 'notFound', 
+      message: 'The page you are looking for was not found.'
+    });
     return;
   }
 
@@ -41,8 +43,10 @@ const onRequest = async (req, res) => {
 
   // Handler function doesn't exist? Return 405
   if (typeof handler !== 'function') {
-    res.writeHead(405, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ id: 'notAllowed', message: 'A valid method was not provided for this route.' }));
+    respond(req, res, 405, { 
+      id: 'notAllowed', 
+      message: 'A valid method was not provided for this route.'
+    });
     return;
   }
 

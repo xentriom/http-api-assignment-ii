@@ -7,9 +7,8 @@ const GET = (req, res) => {
     'Content-Type': 'text/html',
     'Content-Length': Buffer.byteLength(index, 'utf8'),
   });
-  if (req.method !== 'HEAD') {
-    res.write(index);
-  }
+
+  res.write(index);
   res.end();
 }
 
