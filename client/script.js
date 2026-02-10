@@ -54,10 +54,8 @@ nameForm.addEventListener('submit', async (e) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Accept': 'application/json',
-      // Using body does not work so im using x headers
-      'x-name': name.value,
-      'x-age': age.value,
     },
+    body: `name=${name.value}&age=${age.value}`,
   });
 
   handleResponse(res);

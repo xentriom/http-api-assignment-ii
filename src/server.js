@@ -1,6 +1,7 @@
 const { createServer } = require('http');
 const { existsSync } = require('fs');
 const { join } = require('path');
+const { parseBody } = require('./utils/parseBody');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const baseDir = join(__dirname, 'app');
@@ -45,7 +46,11 @@ const onRequest = async (req, res) => {
     return;
   }
 
-  // Call the handler function
+  // Parse body for POST
+  if (req.method === 'POST') {
+    await parseBody(req);
+  }
+
   await handler(req, res);
 };
 

@@ -1,8 +1,7 @@
 const { respond, getUsers, editUser, addUser } = require('../../utils/index.js');
 
 const POST = (req, res) => {
-  const name = req.headers['x-name'];
-  const age = req.headers['x-age'];
+  const { name, age } = req.body;
 
   // Missing name/age
   if (!name || !age) {
