@@ -3,7 +3,7 @@ const userForm = document.querySelector('#userForm');
 
 const handleResponse = async (res) => {
   const content = document.querySelector('#content');
-  content.innerHTML = `${res.status} - ${res.statusText}`;
+  content.innerHTML = `<b>${res.status} - ${res.statusText}</b>`;
 
   const text = await res.text();
   if (text) {
